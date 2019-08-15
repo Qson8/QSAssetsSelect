@@ -69,7 +69,7 @@
 {
     if(_rampView == nil) {
         UIView *rampView = [[UIView alloc] init];
-        rampView.backgroundColor = QSColor(255, 255, 255, 0.6);
+        rampView.backgroundColor = QSColor(0, 0, 0, 0.4);
         [self addSubview:rampView];
         _rampView = rampView;
     }
