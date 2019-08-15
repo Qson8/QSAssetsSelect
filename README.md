@@ -8,8 +8,7 @@
 ![视频裁剪](4.jpg)
 ![图片选择](5.jpg)
 
-![操作视频](show.mp4)
-
+<iframe height=498 width=510 src="show.mp4">
 
 
 
