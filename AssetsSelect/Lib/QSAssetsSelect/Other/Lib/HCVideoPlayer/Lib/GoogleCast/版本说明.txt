@@ -1,0 +1,18 @@
+版本号：4.2.0
+
+add the dynamic GoogleCast.framework to the Embedded Binaries
+
+需要支持的系统库：
+Accelerate.framework
+AudioToolbox.framework
+AVFoundation.framework
+CoreBluetooth.framework
+CoreGraphics.framework
+CoreText.framework
+Foundation.framework
+MediaAccessibility.framework
+MediaPlayer.framework
+MediaToolbox.framework
+QuartzCore.framework
+SystemConfiguration.framework
+UIKit.framework

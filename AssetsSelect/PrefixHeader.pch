@@ -1,0 +1,371 @@
+//
+//  PrefixHeader.pch
+//  AssetsSelect
+//
+//  Created by Qson on 2019/8/10.
+//  Copyright © 2019 QSon. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "UIView+Extension.h"
+#import "UIImage+QS.h"
+#import "UIAlertController+QS.h"
+#import "DeviceOrientation.h"
+#import "NSFileManager+QS.h"
+#import "MBProgressHUD.h"
+#import "UIColor+HexColor.h"
+#import "SDImageCache.h"
+#import "NSString+QS.h"
+#import "QSHUD.h"
+//#import <IJSFoundation/IJSFoundation.h>
+
+// kStatusBar
+// 状态栏默认高度
+#define kStatusBarDefHeight (IS_IPHONE_X ? 44.0f : 20.0f)
+// 状态栏最大高度(通话中)
+#define kStatusBarMaxHeight (IS_IPHONE_X ? 44.0f : 40.0f)
+
+#define statusBarH (IS_IPHONE_X ? 44.0 : [[UIApplication sharedApplication] statusBarFrame].size.height)
+
+#define ScreenWidth     ([UIScreen mainScreen].bounds.size.width)
+#define ScreenHeight    ((statusBarH > kStatusBarDefHeight) ? [UIScreen mainScreen].bounds.size.height - kStatusBarDefHeight : [UIScreen mainScreen].bounds.size.height)
+
+#define kStatusBarHeight ((statusBarH == kStatusBarDefHeight) ? kStatusBarDefHeight : (([[UIApplication sharedApplication] statusBarFrame].size.height == kStatusBarMaxHeight) ? kStatusBarDefHeight : 0.0f))
+#define kiPhoneXSafeBottomHeight (IS_IPHONE_X ? 34 : 0)
+#define kiPhoneXSafeTopHeight (IS_IPHONE_X ? kStatusBarHeight : 0)
+#define kNavigationBarHeight (kStatusBarHeight + 44)
+
+/**
+ *  检查数据有效性
+ */
+#define CHENK_VALUE(value) [MainHelper exchangeTheReturnValueToString:value]
+/**
+ *  检查服务器返回数组类型有效性
+ */
+#define CHENK_ARRAYVALUE(value) [MainHelper exchangeTheReturnValueToArray:value]
+
+
+#define KListCount 25
+#define KCommCount 20
+
+#define KCommentBodyFont [UIFont systemFontOfSize:16]  // 主评论字体大小
+#define KCommentSubBodyFont [UIFont systemFontOfSize:14]  // 子评论字体大小
+#define KCommentOtherFont [UIFont systemFontOfSize:12]  // 评论时间字体等其他信息
+#define KComentBodyColor QSColor(51,51,51,1) // 主评论文字颜色
+#define KComentBodySubColor QSColor(154,154,154,1) // 子评论文字颜色
+#define KComentNameColor QSColor(69,140,204,1) // 用户名颜色
+#define KSeparatorColor [UIColor colorWithHexValue:0xededed]//QSColor(239,239,239,1)
+#define KCommentBackgroundColor QSColor(249,249,249,1)
+#define KResumeUnitRowTextColor QSColor(102, 102, 102, 1.0)
+#define KNavigionVsTabBarBColor QSColor(247, 247, 247, 1)
+#define KNavigionVsTabBarLineColor QSColor(223, 223, 223, 1)
+
+#define LightGrayColor1 0xcccccc
+
+#define HighlightColor1 0xf3be1e
+
+#define KDocumentPath(fileName) [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES).firstObject stringByAppendingPathComponent:fileName]
+
+//导航条标题字体
+#define NavTitleFont [UIFont systemFontOfSize:16]
+
+#define DefaultSmallIconSize 23
+#define DefaultIconSize 33
+
+// 自有版块
+#define KMainArr @[@"澳洲",@"悉尼",@"社会",@"娱乐",@"地产",@"财经",@"美食",@"教育",@"健康",@"旅游",@"社区",@"人物",@"折扣",@"吐槽"];
+
+// 更多版块
+#define KMoreArr @[@"地产新闻",@"娱乐八卦",@"教育新闻",@"旅游资讯",@"昆士兰美食",@"澳洲新闻",@"澳洲联邦",@"澳洲财经",@"雅思专栏",@"中国新闻",@"墨尔本/维州",@"外汇即时新闻",@"悉尼美食",@"投资者新闻",@"政治要闻",@"游记攻略",@"留学故事",@"知识专栏",@"地产观点",@"墨尔本美食",@"悉尼/新州",@"社会万象",@"社区新闻",@"签证指南",@"路线推荐",@"地产贴士",@"墨尔本社区",@"旅游",@"昆州新闻",@"澳洲生活知识",@"热门景点",@"美食达人秀",@"教育",@"最新政策",@"美食文化",@"国际新闻",@"社区",@"专题策划",@"人物",@"房产新闻",@"视频",@"省钱",@"财经",@"科技",@"图片",@"汽车",@"体育",@"段子",@"美女",@"健康",@"情感",@"两性",@"游戏",@"星座",@"文化",@"新闻历史",@"美食",@"教育",@"旅游",@"健康",@"时尚"]
+
+
+
+#define KSourceVidEdu @"18" // 学历
+#define KSourceVidVisa @"19" // 签证
+#define KSourceVidSex @"27" // 性别
+#define KMainCityVid @"555555555"
+//#define KMainCityVsTidDict @{KMainCityVid:@{@"2113":@"悉尼",@"6421":@"卧龙岗",@"5274":@"纽卡斯尔",@"6422":@"中央海岸",@"2114":@"墨尔本",@"6423":@"基隆",@"4833":@"布里斯班",@"6419":@"黄金海岸",@"5275":@"凯恩斯",@"6424":@"阳光海岸",@"5271":@"堪培拉",@"5277":@"阿德莱德",@"5276":@"珀斯",@"5272":@"霍巴特",@"5273":@"达尔文",@"9999":@"海外"}}
+
+#define KMainCityVsTidArray @[\
+@{@"tid":@"2113",@"name":@"悉尼"},\
+@{@"tid":@"6421",@"name":@"卧龙岗"},\
+@{@"tid":@"5274",@"name":@"纽卡斯尔"},\
+@{@"tid":@"6422",@"name":@"中央海岸"},\
+@{@"tid":@"2114",@"name":@"墨尔本"},\
+@{@"tid":@"6423",@"name":@"基隆"},\
+@{@"tid":@"4833",@"name":@"布里斯班"},\
+@{@"tid":@"6419",@"name":@"黄金海岸"},\
+@{@"tid":@"5275",@"name":@"凯恩斯"},\
+@{@"tid":@"6424",@"name":@"阳光海岸"},\
+@{@"tid":@"5271",@"name":@"堪培拉"},\
+@{@"tid":@"5277",@"name":@"阿德莱德"},\
+@{@"tid":@"5276",@"name":@"珀斯"},\
+@{@"tid":@"5272",@"name":@"霍巴特"},\
+@{@"tid":@"5273",@"name":@"达尔文"},\
+@{@"tid":@"9999",@"name":@"海外"}\
+]
+
+// 列表图片加载动画时间
+#define KImageLoadingTime 0.7f
+
+//通知
+#define kAutoRefresh @"kAutoRefresh"
+#define KTokenOverdue @"KTokenOverdue" // 服务器token过期通知
+#define KSwitchCity @"KSwitchCity" // 选中城市的主要处理 通知
+#define KSwitchCityAuxiliary @"KSwitchCityAuxiliary" // 城市选择后的辅助处理 通知
+
+// 通用cellID
+#define QSNOCommentCellID @"NOCommentCell"
+
+// 上传图片最大宽度
+#define KIconImageWith 600.0
+#define KPostImageWith 1024.0
+
+typedef enum : NSUInteger {
+    /** 新闻*/
+    KNewsHistoryList, // 历史列表
+    KNewsFavoriteList, // 收藏列表
+    /** 生活*/
+    KLifeHistoryList, // 历史列表
+    KLifeFavoriteList, // 收藏列表
+    /** 黄页*/
+    KYPHistoryList, // 历史列表
+    KYPFavoriteList, // 收藏列表
+} KRecordType; // 记录的类型
+
+// 本地存储的key值
+#define KCacheLoginInfo @"loginInfo" // 用户登录信息(登录账号和密码)
+#define KCacheUserInfo @"UserInfo" // 用户信息数据
+#define KCacheUserIcon @"userIcon" // 用户头像存储key
+#define KSocialLogin @"socialLogin" // 社会账号登录
+
+#define KNewsFavoriteItems @"newsFavoriteItems" // 新闻收藏key
+#define KYPFavoriteItems @"yellowPagesFavoriteItems" // 黄页收藏key
+#define KLifeFavoriteItems @"LifeFavoriteItems" // 生活页收藏key
+
+#define KNewsBrowseHistory  @"NewsBrowseHistory" // 新闻浏览记录 存数据
+//#define KYPBrowseHistory @"yellowPagesBrowseHistory" // 黄页浏览记录 存数据
+#define KLifeBrowseHistory @"LifeBrowseHistory" //生活浏览记录 存数据
+
+#define KLikeCommentsHistory @"likeCommentsHistory" // 评论点赞记录(记录id)
+#define KCommentHistory @"commentHistory" // 评论记录 存id
+#define KBrowseHistory @"browseHistory" // 帖子浏览记录(包括新闻\生活\黄页) 存id
+
+
+#define KDocumentsADImageName @"QSCacheAdImage.png" // 启动广告缓存文件名
+//#define KTID_NAME @"Life-Tid-Name" // tid对照表
+//#define KVID_TID @"Life-Vid-Tid" // vid对照表
+//#define KNODE_FIELDS @"LifeNodeFields" // 发布界面字段表
+#define KNEWS_Navi @"news_navigation" // 新闻频道导航
+//#define KDOMAIN_CITYS @"domainVsCity" // 对应站点城市数据
+#define KAPPLAUNCH_AD @"App_Launch_AD.plist" // app启动广告
+#define KAPPLAUNCH_AD_PAN @"App_Launch_AD_PAN.plist" // app侧滑广告
+#define KAPPLAUNCH_AD_THREE @"App_Launch_AD_THREE.plist" // app第三方广告
+#define KAPPActivity @"App_Activity.plist" // app活动数据
+#define KYPEnterpriseCertification @"EnterpriseCertificationAuditing" // 企业认证审核中(黄页发帖)
+
+#define KCommentSuccessShareNotice @"CommentSuccessShareNotice" // 评论分享弹框通知
+#define KCommentSuccessSendNotice @"CommentSuccessSendNotice" // 评论成功发送的通知
+
+#define KAlertShowIndex @"AlertShowIndex" //四个月一次,0表示不可以弹出应用内评分，1表示可以弹
+#define KThePresentMonth @"ThePresentMonth" //获取当月
+#define KOpenAPPIndex @"OpenAPPIndex" //打开app次数
+#define KOpenNewsIndex @"OpenNewsIndex" //打开新闻或者帖子次数
+
+// 返回应用代理AppDelegate实例对象
+#define App_Delegate            ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+#define KROOT_VIEW (App_Delegate.window.rootViewController.view)
+/** 屏幕宽高 */
+#define KSCREENFAME [UIScreen mainScreen].bounds
+#define NJH_SCREEN_WIDTH     ([UIScreen mainScreen].bounds.size.width)
+#define NJH_SCREEN_HEIGHT    ([UIScreen mainScreen].bounds.size.height)
+//新闻详情字体
+#define NewsDetailFontSize @"NewsDetailFontSize"
+//是否开启无图模式
+#define hasImageOrNot @"hasImageOrNot"
+
+
+#ifdef DEBUG // 调试状态, 打开LOG功能
+#define CGLog(...) NSLog(__VA_ARGS__)
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else // 发布状态, 关闭LOG功能
+#define CGLog(...)
+#define NSLog(...)
+#endif
+
+#if TARGET_IPHONE_SIMULATOR
+#define SIMULATOR 1
+#elif TARGET_OS_IPHONE
+#define SIMULATOR 0
+#endif
+
+//各版本新手引导
+#define KNoviceGuideFor2_2_1 @"2.2.1" // 含定位和私信
+#define KNoviceGuideFor3_0_3 @"3.0.3" // 含新闻详情分享
+#define KNoviceGuideFor3_0_3_1 @"3.0.3.1" // 含抽奖引导
+#define KNoviceGuideFor3_1_0 @"3.1.0" // 含自定义频道
+#define KNoviceGuideFor3_2_0 @"3.2.0" // 含房屋出租列表标签引导
+#define KNoviceGuideFor3_3_0 @"3.3.0" // 视频 吐槽 美食 频道引导
+#define KNoviceGuideFor4_0_0 @"4.0.0" // 话题、图片新闻频道，打卡、发视频
+#define KNoviceGuideFor4_1_0 @"4.1.0" // 话题、首页打卡引导
+#define KNoviceGuideFor4_7_0 @"4.7.0" // 用户中心、直播引导
+#define KNoviceGuideFor2_2_1_show ([KNoviceGuideFor2_2_1 compare:[App_Delegate lastVersion] options:NSNumericSearch] == NSOrderedDescending)
+#define KNoviceGuideFor3_0_3_show ([KNoviceGuideFor3_0_3 compare:[App_Delegate lastVersion] options:NSNumericSearch] == NSOrderedDescending)
+#define KNoviceGuideFor3_0_3_1_show ([KNoviceGuideFor3_0_3_1 compare:[App_Delegate lastVersion] options:NSNumericSearch] == NSOrderedDescending)
+#define KNoviceGuideFor3_1_0_show ([KNoviceGuideFor3_1_0 compare:[App_Delegate lastVersion] options:NSNumericSearch] == NSOrderedDescending)
+#define KNoviceGuideFor3_2_0_show ([KNoviceGuideFor3_2_0 compare:[App_Delegate lastVersion] options:NSNumericSearch] == NSOrderedDescending)
+#define KNoviceGuideFor3_3_0_show ([KNoviceGuideFor3_3_0 compare:[App_Delegate lastVersion] options:NSNumericSearch] == NSOrderedDescending)
+#define KNoviceGuideFor4_0_0_show ([KNoviceGuideFor4_0_0 compare:[App_Delegate lastVersion] options:NSNumericSearch] == NSOrderedDescending)
+#define KNoviceGuideFor4_1_0_show ([KNoviceGuideFor4_1_0 compare:[App_Delegate lastVersion] options:NSNumericSearch] == NSOrderedDescending)
+#define KNoviceGuideFor4_7_0_show ([KNoviceGuideFor4_7_0 compare:[App_Delegate lastVersion] options:NSNumericSearch] == NSOrderedDescending)
+
+#define KNoviceGuide_Tag(key) ([[NSUserDefaults standardUserDefaults] boolForKey:key] == 0)
+
+//app版本(用于控制版本升级出现引导页面)
+#define kVersion 1
+#define KBundleVersion [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+
+#define AFTER(time, block) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, time*NSEC_PER_SEC), dispatch_get_main_queue(), block)
+
+// iphone4s适配用
+#define IS_IPHONE_4S (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)480)<DBL_EPSILON)
+// iphone5适配用
+#define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)568)<DBL_EPSILON)
+// iphone6适配用
+#define IS_IPHONE_6 (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)667)<DBL_EPSILON)
+// iphone6Plus适配用
+#define IS_IPHONE_6Plus (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)736)<DBL_EPSILON)
+// iphoneX适配用
+#define IS_IPHONE_X (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)812)<DBL_EPSILON)
+// 当前系统版本号
+#define IOSVersion [[UIDevice currentDevice]systemVersion]
+// 判断是否为ios11
+#define IOS11 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 11.0)
+// 判断是否为ios10
+#define IOS10 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 10.0)
+// 判断是否为ios9
+#define IOS9 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 9.0)
+// 判断是否为ios8
+#define IOS8 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 8.0)
+// 判断是否为ios7
+#define IOS7 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0)
+#define IOS6 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 6.0)
+
+//---------通知
+//夜间模式开启或关闭
+#define kNIGHTNOTIFYCATION @"kNIGHTNOTIFYCATION"
+
+//夜间模式参数
+#define kColor(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+#define Color_main     [UIColor colorWithRed:202.0/255 green:51.0/255 blue:54.0/255 alpha:1.0]
+#define Color_gray     [UIColor colorWithRed:111.0/255 green:111.0/255 blue:111.0/255 alpha:1.0]
+#define Color_maingray [UIColor colorWithRed:238.0/255 green:238.0/255 blue:238.0/255 alpha:1.0]
+#define border_gray    [UIColor colorWithRed:200.0/255 green:200.0/255 blue:200.0/255 alpha:1.0]
+#define sublabel_gray  [UIColor colorWithRed:170.0/255 green:170.0/255 blue:170.0/255 alpha:1.0]
+#define MainBackgroundColorGray [UIColor colorWithRed:251.0/255 green:251.0/255 blue:251.0/255 alpha:1.0]
+#define MainBackgroundColorNight NightBackgroundColor
+#define setSelectedCellBackgroundColor ([[UIImageView alloc] initWithImage:[UIImage imageWithPureColor:[UIColor colorWithHexValue:App_Delegate.isNight?0x333333:0xe4e4e4]]])
+#define NightBackgroundColor    [UIColor colorWithHexValue:0x222222]
+#define NightTextColor          [UIColor colorWithHexValue:0x888888]
+#define MainTextColorNight NightTextColor
+#define MainTextColor          [UIColor blackColor]
+#define MainTextWhiteColor     [UIColor whiteColor]
+
+#define TableViewSeparatorColor          KSeparatorColor // [UIColor colorWithHexValue:0xdfdfdf]
+#define TableViewSeparatorColorNight          [UIColor colorWithHexValue:0x313131]
+#define color_tableViewCellselected [UIColor colorWithRed:58/255.0 green:58/255.0 blue:58/255.0 alpha:1.f]//选中cell的文字颜色
+
+// 无内容的文字颜色
+#define NODataTextColor App_Delegate.isNight?MainTextColorNight:[UIColor lightGrayColor]
+//App_Delegate.isNight?TableViewSeparatorColorNight:TableViewSeparatorColor;
+
+#define QSColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define QSColor(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
+#define kLineColor (App_Delegate.isNight?TableViewSeparatorColorNight:TableViewSeparatorColor)
+#define kBackgroundColor (App_Delegate.isNight?NightBackgroundColor:[UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1.0])
+#define kTitleColor kColor(51, 51, 51)
+
+#define KIconBorderColor [UIColor colorWithRed:223/255.0 green:223/255.0 blue:223/255.0 alpha:1.0]
+
+#define kShowADTime 300
+// IM
+#define kIMCustomServiceID @[@"17", @"90125"]
+#define kIMNotificationAddNewUnreadMessage @"kIMNotificationAddNewUnreadMessage"
+#define kIMNotificationRemoveNewUnreadMessage @"kIMNotificationRemoveNewUnreadMessage"
+#define kIMNotificationCloseDefaultClient @"kIMNotificationCloseDefaultClient"
+#define kIMNotificationOpenDefaultClient @"kIMNotificationOpenDefaultClient"
+#define kNotificationGetRidSuccess @"kNotificationGetRidSuccess"
+
+#define kIsIphone ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+#define kIsIpad ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+#define kTextGray [UIColor colorWithHexValue:0x9a9a9a]
+#define WeakObj(o) __weak typeof(o) o##Weak = o
+
+// textViewMargin
+#define kTextViewVMargin 8
+#define kTextViewHMargin 4
+
+#define kJRCellADInfoTitle @"资讯"
+// 适配
+#define kSuitFloat(value) ((ScreenHeight > 667 && ScreenWidth > 375) ? ((value) * (ScreenHeight - 108) / (667.0 - 108)) : (value))
+#define kIPadSuitFloat(value) (kIsIpad ? (value) * 1.3 : (value))
+#define kJKSSuitFloat(value) (value)
+#define KNewsSuitFloat(value) ((ScreenHeight > 667 && ScreenWidth > 375) ? ((value) * (ScreenHeight - 147) / (667.0 - 147)) : (value))
+#define kNewDetailSuitFont(value) (IS_IPHONE_6Plus ? (value) * 1.10985915492958 : (value))
+#define kSuitFont(value) (kIsIpad ? kIPadSuitFloat(value) : kSuitFloat(value))
+#define kNewsSuitFont(value) (kIsIpad ? kIPadSuitFloat(value) : KNewsSuitFloat(value))
+
+#define kNewsDetailFonts @[@(kNewDetailSuitFont(15)), @(kNewDetailSuitFont(18)), @(kNewDetailSuitFont(21)), @(kNewDetailSuitFont(24))]
+
+#define kRefreshGifDuration 2.46
+
+#pragma mark 字体
+#define SystemFont(size) [UIFont systemFontOfSize:size]
+#define KTextFont(value) SystemFont(kSuitFont(value))
+// 个人中心
+#define kUCSuitFloat(value) kSuitFloat(value)
+// 评论列表
+#define kCOMSuitFloat(value) ((ScreenHeight > 667) ? ((value) * (ScreenHeight - 64 - 49 ) / (667.0 - 64 - 49)) : (value))
+#define KComMaxHeight kSuitFloat(100 + 50)
+// 失效标签高度
+#define KNoteFailureTagH kSuitFloat(50)
+// 指定标签的尺寸
+#define KTagTopLabelW kSuitFloat(30)
+#define KTagTopLabelH kSuitFloat(15)
+#define kGADAdUnitID @"/21623450933/sydneytoday_App_iOS_ROS_smart"
+//@"/21623450933/sydneytoday_App_iOS_ROS_smart"//@"ca-app-pub-5543555905977374/7951935509"
+#define kGADAdViewHeight kIPadSuitFloat(100)
+
+
+#define UIColorFromRGB(rgbValue) \
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
+blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
+alpha:1.0]
+#define BLUECOLOR [UIColor colorWithRed:31.0/255 green:147.0/255 blue:234.0/255 alpha:1.0]
+#define BLUECOLOR1 [UIColor colorWithRed:69.0/255 green:140.0/255 blue:204.0/255 alpha:1.0]
+#define BLUECOLOR2 [UIColor colorWithRed:60.0/255 green:151.0/255 blue:219.0/255 alpha:1.0]
+#define BLUEGLAYCOLOR [UIColor colorWithRed:166.0/255 green:213.0/255 blue:248.0/255 alpha:1.0]
+#define REDCOLOR [UIColor colorWithRed:226.0/255 green:42.0/255 blue:30.0/255 alpha:1.0]
+#define BLACKCOLOR [UIColor colorWithRed:51.0/255 green:51.0/255 blue:51.0/255 alpha:1.0]
+#define BLACKGLAYCOLOR [UIColor colorWithRed:154.0/255 green:154.0/255 blue:154.0/255 alpha:1.0]
+#define WHITEGLAYCOLOR [UIColor colorWithRed:239.0/255 green:239.0/255 blue:239.0/255 alpha:1.0]
+#define SEARCHBGCOLOR [UIColor colorWithRed:248.0/255 green:248.0/255 blue:248.0/255 alpha:1.0]
+#define LINEGLAYCOLOR [UIColor colorWithRed:223.0/255 green:223.0/255 blue:223.0/255 alpha:1.0]
+#define LABELGLAYCOLOR [UIColor colorWithRed:102.0/255 green:102.0/255 blue:102.0/255 alpha:1.0]
+#define YELLOWCOLOR [UIColor colorWithRed:255.0/255 green:199.0/255 blue:28.0/255 alpha:1.0]
+#define LABELTEXT @"本站所提供视频资源均收集于各大视频网站，版权归原视频公司所有，本站不提供视频资源的存储、录制及上传，版权归作者所有。若本站在无意中侵犯了作者的权益，请您告知本站，本站会及时做出答复和处理。"
+#define WidthBigScale 0.5
+#define WidthSmallScale 0.5762
+#define HeightScale 1.3918
+#define FIRSTHeightScale 0.45
+#define LM_SCREEN_WIDTH   [[UIScreen mainScreen] bounds].size.width
+#define LM_SCREEN_HEIGHT  [[UIScreen mainScreen] bounds].size.height
+#define LM_SCREEN_BOUNDS  [UIScreen mainScreen].bounds
+#define SCREEN_MAX_LENGTH (MAX(LM_SCREEN_WIDTH, LM_SCREEN_HEIGHT))
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_IPHONE_4  (IS_IPHONE && SCREEN_MAX_LENGTH == 480.0)
+#endif /* PrefixHeader_pch */
